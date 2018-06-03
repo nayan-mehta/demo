@@ -24,6 +24,8 @@ while(lives>0 and len(w)!=length):
         else:
             lives = lives - 1
             print("left lives: ", lives)
+    else:
+        print('You have already choose letter '+guess+' choose different letter')
 if(lives==0):
     print("You Loss")
     print("word was: "+w)
