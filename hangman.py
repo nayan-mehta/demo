@@ -11,7 +11,7 @@ list1 =[]
 lives = 5
 length=0
 print('_ '*len(w))
-print('Enter any letter to fill these spaces')
+print('Guess letters to find the word')
 while(lives>0 and len(w)!=length):
     guess = input()
     if guess not in list1:
