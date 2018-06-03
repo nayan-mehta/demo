@@ -124,4 +124,30 @@ else:
 
 
 
-    
+ ******* EKANKSHI SHARMA ******
+    name = input("Enter your name:  ")
+print("Hello, " + name, "Let\'s play the game! \n Get  ready to hang")
+word = "python"
+guesses = ''
+turns = 5
+while turns > 0:
+    failed = 0
+    for char in word:
+        if char in guesses:
+            print(char)
+        else:
+            print("_")
+            failed += 1
+    if failed == 0:
+        print("You won !")
+        break
+    guess = input("guess character:")
+    guesses += guess
+    if guess not in word:
+        turns -= 1
+        print("Wrong guess")
+        print("You are left with", turns)
+        if turns == 0
+            print("Oops turns up you loose the game 1")
+            
+**END**
