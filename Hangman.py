@@ -87,14 +87,14 @@ while (lives > 0 and len(w) != length):
     guess = input()
 
     if guess not in list1:
+    
+        list1.append(guess)
 
         if (guess in word):
 
             n = word.count(guess)
 
             length = length + n
-
-            list1.append(guess)
 
             print('spaces left=>')
 
@@ -119,6 +119,7 @@ if (lives == 0):
 else:
 
     print("You win")
+    print("word was: "+ w)
 
 '''
 
