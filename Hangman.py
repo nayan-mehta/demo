@@ -23,6 +23,7 @@ while(lives>0)
 
 '''
 '''
+
 Samarth and Sparsh's Hangman
 
 print "hangman game"
@@ -123,10 +124,10 @@ else:
 
 '''
 
-
-
-#  ******* EKANKSHI SHARMA ******
-#     name = input("Enter your name:  ")
+#
+#
+# #******* EKANKSHI SHARMA ******
+# name = input("Enter your name:  ")
 # print("Hello, " + name, "Let\'s play the game! \n Get  ready to hang")
 # word = "python"
 # guesses = ''
@@ -148,7 +149,7 @@ else:
 #         turns -= 1
 #         print("Wrong guess")
 #         print("You are left with", turns)
-#         if turns == 0
+#         if turns == 0:
 #             print("Oops turns up you loose the game 1")
 #
-# **END**
+# #**END**
