@@ -10,7 +10,7 @@ for i in r:
     print_no_new(i)
 lives=6
 jumble=""
-word="github"
+word="hello"
 w=list(word)
 n="_"
 l=list(n*len(word))
