@@ -1,5 +1,5 @@
 # 1. Make your API Key
-# 2. Python2/3 you can make API calls
+# 2. Python2/3 you can make API calls fetch data in json
 # 3. Json try separate elements into variables
 
 # import requests
@@ -28,13 +28,13 @@ def time_converter(time):
 
 
 def url_builder(city_id):
-    user_api = '31af9666b4f84729a6fefbc21248b12a'  # Obtain yours form: http://openweathermap.org/
+    user_api = 'xxxxxxxxxxxxxxx'  # Obtain yours form: http://openweathermap.org/
     unit = 'metric'  # For Fahrenheit use imperial, for Celsius use metric, and the default is Kelvin.
     api = 'http://api.openweathermap.org/data/2.5/weather?id='     # Search for your city ID here: http://bulk.openweathermap.org/sample/city.list.json.gz
 
     full_api_url = api + str(city_id) + '&mode=json&units=' + unit + '&APPID=' + user_api
     return full_api_url
-# http://api.openweathermap.org/data/2.5/weather?id=1273294&mode=json&units=metric&APPID=31af9666b4f84729a6fefbc21248b12a
+# http://api.openweathermap.org/data/2.5/weather?id=1273294&mode=json&units=metric&APPID=xxxxxxxxxxxx
 
 
 def data_fetch(full_api_url):
@@ -83,6 +83,7 @@ def data_output(data):
     print('')
     print('Last update from the server: {}'.format(data['dt']))
     print('---------------------------------------')
+
 
 
 
