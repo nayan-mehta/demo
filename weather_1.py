@@ -3,13 +3,78 @@
 # 2. Python2/3 you can make API calls fetch data in json
 # 3. Json try separate elements into variables
 
-# import requests
+import requests
+import re
+import datetime
+
+
+def data_organizer(raw_api_dict):
+    data = dict(
+        city=raw_api_dict.get('name'),
+        country=raw_api_dict.get('sys').get('country'),
+        temp=raw_api_dict.get('main').get('temp'),
+        temp_max=raw_api_dict.get('main').get('temp_max'),
+        temp_min=raw_api_dict.get('main').get('temp_min'),
+        humidity=raw_api_dict.get('main').get('humidity'),
+        pressure=raw_api_dict.get('main').get('pressure'),
+        sky=raw_api_dict['weather'][0]['main'],
+        sunrise=raw_api_dict.get('sys').get('sunrise'),
+        sunset=raw_api_dict.get('sys').get('sunset'),
+        wind=raw_api_dict.get('wind').get('speed'),
+        wind_deg=raw_api_dict.get('deg'),
+        dt=raw_api_dict.get('dt'),
+        cloudiness=raw_api_dict.get('clouds').get('all')
+    )
+    return data
+
+
+
+r = requests.get(url='http://api.openweathermap.org/data/2.5/forecast?q=bangalore&mode=json&units=metric&APPID=xxxxxxxxxxxxxxx')
+json_data= r.json()
+# print(json_data)
+# print(json_data['list'][0]['dt_txt'])
+list_items= json_data['list']
+# print(list_items)
+
+#02-07-2018
+
+
+
+now = datetime.datetime.now()
+# print(now)
+today= now.day
+
 #
+list_indices = []
 #
-# r = requests.get(url='http://api.openweathermap.org/data/2.5/forecast?q=bangalore&mode=json&units=metric&APPID=xxxxxxxxxxxxxx')
-# json_data= r.json()
-# # print(json_data['list'][0]['dt_txt'])
-# list_items= json_data['list']
+for items in list_items:
+    matchObj = re.match(r"(\d+)-(\d+)-(\d+)",items['dt_txt'], re.M | re.I)
+    # print(matchObj.group(3))
+    list_indices.append(matchObj[3])
+# print(list_indices)
+
+#
+# # print(list_indices[0])
+#
+# list.index(item)
+
+# print(today)
+for items in list_indices:
+    if(int(items) == today+1):
+        # print("yay")
+        # print(items)
+        index=list_indices.index(items)
+        # print(index)
+        break
+
+# print(index)
+# #
+# print(list_items[index])
+
+print(data_organizer(list_items[index]))
+
+
+
 #
 # for items in list_items:
 #     print(items['dt_txt'])
