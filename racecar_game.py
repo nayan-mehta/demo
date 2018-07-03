@@ -19,12 +19,47 @@ gameDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption('A bit Racey')
 carImg = pygame.image.load('racecar.png')
 
+# RGB 0-255
+
 black = (0,0,0)
 white = (255,255,255)
+
+
+green = (0,200,0)
+bright_green = (0,255,0)
+
+red = (200,0,0)
+bright_red = (255,0,0)
+
+
 
 clock = pygame.time.Clock()
 
 racecar_width=73
+
+def quitgame():
+    pygame.quit()
+    quit()
+
+def button(text,x,y,w,h,ic,ac,action = None):
+    mouse = pygame.mouse.get_pos()
+    # print(mouse)
+
+    click = pygame.mouse.get_pressed()
+    # print(click)
+
+    if x < mouse[0] < x + w and y < mouse[1] < y + h:
+        pygame.draw.rect(gameDisplay,ac, (x, y, w, h))
+        if click[0] == 1 and action != None :
+            action()
+    else:
+        pygame.draw.rect(gameDisplay, ic, (x, y, w, h))
+
+    font = pygame.font.Font("freesansbold.ttf", 20)
+    textSurf, textRect = text_objects(text, font)
+    textRect.center = ((x + (w / 2)), (y + (h / 2)))
+    gameDisplay.blit(textSurf, textRect)
+
 
 def things_dodged(count):
     font = pygame.font.SysFont(None, 25)
@@ -44,14 +79,38 @@ def message_display(text):
     TextRect.center = ((display_width/2),(display_height/2))
     gameDisplay.blit(TextSurf, TextRect)
     pygame.display.update()
-    # time.sleep(2)
-    game_loop()
+    time.sleep(2)
+    game_intro()
 
 def crash():
     message_display('You Crashed')
 
 def car(x,y):
     gameDisplay.blit(carImg, (x,y))
+
+
+def game_intro():
+    intro = True
+
+    while intro:
+        for event in pygame.event.get():
+            print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        gameDisplay.fill(white)
+        largeText = pygame.font.Font('freesansbold.ttf', 115)
+        TextSurf, TextRect = text_objects("A bit Racey", largeText)
+        TextRect.center = ((display_width / 2), (display_height / 2))
+        gameDisplay.blit(TextSurf, TextRect)
+
+
+        button("Go",150,450,100,50,green,bright_green,game_loop)
+        button("Quit", 550, 450, 100, 50, red, bright_red,quitgame)
+
+        pygame.display.update()
+        clock.tick(15)
 
 def game_loop():
     x = (display_width * 0.45)
@@ -86,7 +145,7 @@ def game_loop():
                     x_change = 0
                     y_change = 0
 
-            print(event)
+            # print(event)
         x += x_change
         y += y_change
 
@@ -120,6 +179,7 @@ def game_loop():
 
         clock.tick(60)
 
+game_intro()
 game_loop()
 pygame.quit()
 quit()
